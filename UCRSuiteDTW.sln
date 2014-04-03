@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCRSuite", "UCRSuite\UCRSuite.csproj", "{27F5127F-082F-4369-A8C1-2415417D8298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{5B55F4A6-159D-4110-8C98-19AC40FD1552}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27F5127F-082F-4369-A8C1-2415417D8298}.Debug|x86.ActiveCfg = Debug|x86
+		{27F5127F-082F-4369-A8C1-2415417D8298}.Debug|x86.Build.0 = Debug|x86
+		{27F5127F-082F-4369-A8C1-2415417D8298}.Release|x86.ActiveCfg = Release|x86
+		{27F5127F-082F-4369-A8C1-2415417D8298}.Release|x86.Build.0 = Release|x86
+		{5B55F4A6-159D-4110-8C98-19AC40FD1552}.Debug|x86.ActiveCfg = Debug|x86
+		{5B55F4A6-159D-4110-8C98-19AC40FD1552}.Debug|x86.Build.0 = Debug|x86
+		{5B55F4A6-159D-4110-8C98-19AC40FD1552}.Release|x86.ActiveCfg = Release|x86
+		{5B55F4A6-159D-4110-8C98-19AC40FD1552}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
