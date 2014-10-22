@@ -108,7 +108,6 @@ namespace UCRSuite
             sort();
             buildEnvelopes();
 
-
             _values.Clear(); // purge unneeded memory
             _processed = true;
         }

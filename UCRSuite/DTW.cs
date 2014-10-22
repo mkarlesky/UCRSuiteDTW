@@ -17,7 +17,7 @@ namespace UCRSuite
         // For every EPOCH points, all cummulative values, such as ex (sum), ex2 (sum square), will be restarted for reducing the doubleing point error.
         static int EPOCH = 100000;
 
-        private readonly Queue<MDVector> _data;
+        private readonly List<MDVector> _data;
 
         private readonly KimLowerBound _kimLb;
         private readonly KeoghLowerBound _keoghLb;
@@ -33,7 +33,7 @@ namespace UCRSuite
         // Constructor
         public DTW (int dimensions = 1, float warpingWindow = 0.05f)
         {
-            _data = new Queue<MDVector>();
+            _data = new List<MDVector>();
 
             _dimensions    = dimensions;
             _warpingWindow = warpingWindow;
@@ -60,16 +60,10 @@ namespace UCRSuite
             }
         }
 
-        public DTW (Queue<MDVector> data, int dimensions = 1, float warpWindow = 0.05f) :
-            this(dimensions, warpWindow)
-        {
-            _data = new Queue<MDVector>(data);
-        }
-
         public DTW(List<MDVector> data, int dimensions = 1, float warpWindow = 0.05f) :
             this(dimensions, warpWindow)
         {
-            _data = new Queue<MDVector>(data);
+            _data = new List<MDVector>(data);
         }
 
         public Query Query()
@@ -94,7 +88,7 @@ namespace UCRSuite
                 throw new Exception("Dimension of data item added [" + vector.Dimensions + "] does not match expected [" + _dimensions + "].");
             }
 
-            _data.Enqueue( new MDVector(vector) );
+            _data.Add( new MDVector(vector) );
         }
 
         public DTWResult warp(Query query)
@@ -106,6 +100,7 @@ namespace UCRSuite
             
             MDVector d;
             int i, j;
+            int dataIndex = 0;
             int matchIndex = 0;
             int kim = 0, keogh = 0, keogh2 = 0;
             double distance = 0;
@@ -165,9 +160,9 @@ namespace UCRSuite
                 {
                     for (k = 0; k < query.Length - 1; k++)
                     {
-                        if(_data.Count > 0)
+                        if(dataIndex < _data.Count)
                         {
-                            buffer[k].set( _data.Dequeue() );
+                            buffer[k].set( _data[dataIndex++] );
                         }
                     }
                 }
@@ -183,9 +178,9 @@ namespace UCRSuite
                 ep = query.Length - 1;
                 while (ep < EPOCH)
                 {
-                    if (_data.Count == 0)
+                    if (dataIndex >= _data.Count)
                         break;
-                    buffer[ep].set( _data.Dequeue() );
+                    buffer[ep].set(_data[dataIndex++]);
                     ep++;
                 }
 
